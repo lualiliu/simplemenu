@@ -240,37 +240,37 @@ void showRomPreferences() {
 	drawTextOnScreen(getFont(), NULL, calculateProportionalSizeOrDistance(6), (SCREEN_HEIGHT/2)-calculateProportionalSizeOrDistance(28), name, (int[]) {255,255,255}, VAlignMiddle | HAlignLeft);
 	free(name);
 
-	TTF_SizeText(getFont(), (const char *) "Overclock: " , &textWidth, NULL);
+	TTF_SizeText(getFont(), (const char *) "超频: " , &textWidth, NULL);
 	textWidth+=calculateProportionalSizeOrDistance(2);
 
 	//Frequency option text
-	drawTextOnScreen(getFont(), NULL, (SCREEN_WIDTH/2)-width/2+calculateProportionalSizeOrDistance(4), (SCREEN_HEIGHT/2)-calculateProportionalSizeOrDistance(9), "Overclock: ", textColor, VAlignMiddle | HAlignLeft);
+	drawTextOnScreen(getFont(), NULL, (SCREEN_WIDTH/2)-width/2+calculateProportionalSizeOrDistance(4), (SCREEN_HEIGHT/2)-calculateProportionalSizeOrDistance(9), "超频: ", textColor, VAlignMiddle | HAlignLeft);
 	//Frequency option value
 #if defined TARGET_OD_BETA || defined TARGET_RFW || defined TARGET_BITTBOY
 	if (CURRENT_SECTION.currentGameNode->data->preferences.frequency==OC_OC) {
-		drawTextOnScreen(getFont(), NULL, (SCREEN_WIDTH/2)-width/2+textWidth+1, (SCREEN_HEIGHT/2)-calculateProportionalSizeOrDistance(9), "yes", valueColor, VAlignMiddle | HAlignLeft);
+		drawTextOnScreen(getFont(), NULL, (SCREEN_WIDTH/2)-width/2+textWidth+1, (SCREEN_HEIGHT/2)-calculateProportionalSizeOrDistance(9), "是", valueColor, VAlignMiddle | HAlignLeft);
 	} else {
-		drawTextOnScreen(getFont(), NULL, (SCREEN_WIDTH/2)-width/2+textWidth+1, (SCREEN_HEIGHT/2)-calculateProportionalSizeOrDistance(9), "no", valueColor, VAlignMiddle | HAlignLeft);
+		drawTextOnScreen(getFont(), NULL, (SCREEN_WIDTH/2)-width/2+textWidth+1, (SCREEN_HEIGHT/2)-calculateProportionalSizeOrDistance(9), "否", valueColor, VAlignMiddle | HAlignLeft);
 	}
 #else
-	drawTextOnScreen(getFont(), NULL, (SCREEN_WIDTH/2)-width/2+textWidth, (SCREEN_HEIGHT/2)-calculateProportionalSizeOrDistance(9), "unavailable", valueColor, VAlignMiddle | HAlignLeft);
+	drawTextOnScreen(getFont(), NULL, (SCREEN_WIDTH/2)-width/2+textWidth, (SCREEN_HEIGHT/2)-calculateProportionalSizeOrDistance(9), "未准备", valueColor, VAlignMiddle | HAlignLeft);
 #endif
 
 	drawRectangleToScreen(width, calculateProportionalSizeOrDistance(1), SCREEN_WIDTH/2-width/2,SCREEN_HEIGHT/2, (int[]){219,219,219});
 
 	//Launch at boot option text
-	drawTextOnScreen(getFont(), NULL, (SCREEN_WIDTH/2)-width/2+calculateProportionalSizeOrDistance(4), (SCREEN_HEIGHT/2)+calculateProportionalSizeOrDistance(9), "Autostart: ", textColor, VAlignMiddle | HAlignLeft);
+	drawTextOnScreen(getFont(), NULL, (SCREEN_WIDTH/2)-width/2+calculateProportionalSizeOrDistance(4), (SCREEN_HEIGHT/2)+calculateProportionalSizeOrDistance(9), "自动启动: ", textColor, VAlignMiddle | HAlignLeft);
 	//Launch at boot option value
 	if (launchAtBoot) {
-		drawTextOnScreen(getFont(), NULL, (SCREEN_WIDTH/2)-width/2+textWidth, (SCREEN_HEIGHT/2)+calculateProportionalSizeOrDistance(9), "yes", valueColor, VAlignMiddle | HAlignLeft);
+		drawTextOnScreen(getFont(), NULL, (SCREEN_WIDTH/2)-width/2+textWidth, (SCREEN_HEIGHT/2)+calculateProportionalSizeOrDistance(9), "是", valueColor, VAlignMiddle | HAlignLeft);
 	} else {
-		drawTextOnScreen(getFont(), NULL, (SCREEN_WIDTH/2)-width/2+textWidth, (SCREEN_HEIGHT/2)+calculateProportionalSizeOrDistance(9), "no", valueColor, VAlignMiddle | HAlignLeft);
+		drawTextOnScreen(getFont(), NULL, (SCREEN_WIDTH/2)-width/2+textWidth, (SCREEN_HEIGHT/2)+calculateProportionalSizeOrDistance(9), "否", valueColor, VAlignMiddle | HAlignLeft);
 	}
 
 	drawRectangleToScreen(width, calculateProportionalSizeOrDistance(1), SCREEN_WIDTH/2-width/2,SCREEN_HEIGHT/2+height/4, (int[]){219,219,219});
 
 	//Emulator option text
-	drawTextOnScreen(getFont(), NULL, (SCREEN_WIDTH/2)-width/2+calculateProportionalSizeOrDistance(4), (SCREEN_HEIGHT/2)+calculateProportionalSizeOrDistance(27), "Emulator: ", textColor, VAlignMiddle | HAlignLeft);
+	drawTextOnScreen(getFont(), NULL, (SCREEN_WIDTH/2)-width/2+calculateProportionalSizeOrDistance(4), (SCREEN_HEIGHT/2)+calculateProportionalSizeOrDistance(27), "模拟器: ", textColor, VAlignMiddle | HAlignLeft);
 	//Emulator option value
 	drawTextOnScreen(getFont(), NULL, (SCREEN_WIDTH/2)-width/2+textWidth, (SCREEN_HEIGHT/2)+calculateProportionalSizeOrDistance(27), emuName, valueColor, VAlignMiddle | HAlignLeft);
 
@@ -697,24 +697,24 @@ void setOptionsAndValues (char **options, char **values, char **hints){
 	hints[SHUTDOWN_OPTION]= malloc(100);
 	hints[HELP_OPTION]= malloc(100);
 
-	strcpy(options[TIDY_ROMS_OPTION],"Tidy rom names ");
-	strcpy(options[FULL_SCREEN_FOOTER_OPTION],"Fullscreen rom names ");
-	strcpy(options[FULL_SCREEN_MENU_OPTION],"Fullscreen menu ");
+	strcpy(options[TIDY_ROMS_OPTION],"简洁的游戏名称 ");
+	strcpy(options[FULL_SCREEN_FOOTER_OPTION],"全屏的游戏名称");
+	strcpy(options[FULL_SCREEN_MENU_OPTION],"全屏的菜单");
 	logMessage("INFO","setOptionsAndValues","Full screen menu option");
 	logMessage("INFO","setOptionsAndValues",options[FULL_SCREEN_MENU_OPTION]);
-	strcpy(options[THEME_OPTION],"Theme ");
-	strcpy(options[SCREEN_TIMEOUT_OPTION],"Screen timeout ");
-	strcpy(options[DEFAULT_OPTION],"Default launcher  ");
+	strcpy(options[THEME_OPTION],"主题");
+	strcpy(options[SCREEN_TIMEOUT_OPTION],"屏幕超时");
+	strcpy(options[DEFAULT_OPTION],"默认启动");
 	logMessage("INFO","setOptionsAndValues","Default option");
 	logMessage("INFO","setOptionsAndValues",options[DEFAULT_OPTION]);
 	#if defined TARGET_RFW
-	strcpy(options[USB_OPTION],"USB mode");
+	strcpy(options[USB_OPTION],"USB模式");
 	#else
 	strcpy(options[USB_OPTION],"HDMI");
 	#endif
-	strcpy(options[HELP_OPTION],"Help");
+	strcpy(options[HELP_OPTION],"帮助");
 
-	strcpy(options[SHUTDOWN_OPTION],"Session ");
+	strcpy(options[SHUTDOWN_OPTION],"会话");
 	strcpy(hints[TIDY_ROMS_OPTION],"CUT DETAILS OUT OF ROM NAMES");
 	strcpy(hints[FULL_SCREEN_FOOTER_OPTION],"DISPLAY THE CURRENT ROM NAME");
 	strcpy(hints[FULL_SCREEN_MENU_OPTION],"DISPLAY A TRANSLUCENT MENU");
@@ -758,19 +758,19 @@ void setOptionsAndValues (char **options, char **values, char **hints){
 
 
 	if (stripGames) {
-		strcpy(values[TIDY_ROMS_OPTION],"enabled");
+		strcpy(values[TIDY_ROMS_OPTION],"是");
 	} else {
-		strcpy(values[TIDY_ROMS_OPTION],"disabled");
+		strcpy(values[TIDY_ROMS_OPTION],"否");
 	}
 	if (footerVisibleInFullscreenMode) {
-		strcpy(values[FULL_SCREEN_FOOTER_OPTION],"enabled");
+		strcpy(values[FULL_SCREEN_FOOTER_OPTION],"是");
 	} else {
-		strcpy(values[FULL_SCREEN_FOOTER_OPTION],"disabled");
+		strcpy(values[FULL_SCREEN_FOOTER_OPTION],"否");
 	}
 	if (menuVisibleInFullscreenMode) {
-		strcpy(values[FULL_SCREEN_MENU_OPTION],"enabled");
+		strcpy(values[FULL_SCREEN_MENU_OPTION],"是");
 	} else {
-		strcpy(values[FULL_SCREEN_MENU_OPTION],"disabled");
+		strcpy(values[FULL_SCREEN_MENU_OPTION],"否");
 	}
 	logMessage("INFO","setOptionsAndValues","Full screen menu is...");
 	logMessage("INFO","setOptionsAndValues",values[FULL_SCREEN_MENU_OPTION]);
@@ -780,15 +780,15 @@ void setOptionsAndValues (char **options, char **values, char **hints){
 	if (timeoutValue>0&&hdmiEnabled==0) {
 		sprintf(values[SCREEN_TIMEOUT_OPTION],"%d",timeoutValue);
 	} else {
-		sprintf(values[SCREEN_TIMEOUT_OPTION],"%s","always on");
+		sprintf(values[SCREEN_TIMEOUT_OPTION],"%s","常亮");
 	}
 
 	if (shutDownEnabled) {
-		strcpy(values[DEFAULT_OPTION],"yes");
+		strcpy(values[DEFAULT_OPTION],"是");
 		logMessage("INFO","setOptionsAndValues","Default option value");
 		logMessage("INFO","setOptionsAndValues",values[DEFAULT_OPTION]);
 	} else {
-		strcpy(values[DEFAULT_OPTION],"no");
+		strcpy(values[DEFAULT_OPTION],"否");
 		logMessage("INFO","setOptionsAndValues","Default option value");
 		logMessage("INFO","setOptionsAndValues",values[DEFAULT_OPTION]);
 	}
@@ -796,13 +796,13 @@ void setOptionsAndValues (char **options, char **values, char **hints){
 	strcpy(values[USB_OPTION]," \0");
 	#else
 	if (hdmiChanged==1) {
-		strcpy(values[USB_OPTION],"enabled");
+		strcpy(values[USB_OPTION],"是");
 	} else {
-		strcpy(values[USB_OPTION],"disabled");
+		strcpy(values[USB_OPTION],"否");
 	}
 	#endif
 //	if (autoHideLogos) {
-//		strcpy(values[AUTO_HIDE_LOGOS_OPTION],"enabled");
+//		strcpy(values[AUTO_HIDE_LOGOS_OPTION],"是");
 //	} else {
 		strcpy(values[HELP_OPTION]," \0");
 //	}
@@ -868,7 +868,7 @@ void drawSettingsScreen() {
 	logMessage("INFO","drawSettingsScreen","Drawing shit");
 	drawRectangleToScreen(SCREEN_WIDTH, SCREEN_HEIGHT-calculateProportionalSizeOrDistance(22), 0,calculateProportionalSizeOrDistance(22), bodyBackground);
 	drawRectangleToScreen(SCREEN_WIDTH, calculateProportionalSizeOrDistance(42), 0, 0, headerAndFooterBackground);
-	drawTextOnSettingsHeaderLeftWithColor("SETTINGS",headerAndFooterText);
+	drawTextOnSettingsHeaderLeftWithColor("设置",headerAndFooterText);
 
 	drawBatteryMeter();
 
@@ -973,7 +973,7 @@ void drawHelpScreen(int page) {
 	drawRectangleToScreen(SCREEN_WIDTH, SCREEN_HEIGHT-calculateProportionalSizeOrDistance(22), 0,calculateProportionalSizeOrDistance(22), bodyBackground);
 	drawRectangleToScreen(SCREEN_WIDTH, calculateProportionalSizeOrDistance(42), 0, 0, headerAndFooterBackground);
 	char temp[300];
-	sprintf(temp,"HELP - %d/2", page);
+	sprintf(temp,"帮助 - %d/2", page);
 	drawTextOnSettingsHeaderLeftWithColor(temp,headerAndFooterText);
 
 	drawBatteryMeter();
@@ -987,19 +987,19 @@ void drawHelpScreen(int page) {
 				switch (i) {
 					case 0:
 						drawNonShadedSettingsOptionOnScreen("A", nextLineText, bodyText);
-						drawSettingsOptionValueOnScreen("Confirm", nextLineText, bodyHighlightedText);
+						drawSettingsOptionValueOnScreen("确定", nextLineText, bodyHighlightedText);
 						break;
 					case 1:
 						drawNonShadedSettingsOptionOnScreen("B", nextLineText, bodyText);
-						drawSettingsOptionValueOnScreen("Back/Function key", nextLineText, bodyHighlightedText);
+						drawSettingsOptionValueOnScreen("返回/热键", nextLineText, bodyHighlightedText);
 						break;
 					case 2:
 						drawNonShadedSettingsOptionOnScreen("X", nextLineText, bodyText);
-						drawSettingsOptionValueOnScreen("Mark favorite", nextLineText, bodyHighlightedText);
+						drawSettingsOptionValueOnScreen("加入喜爱", nextLineText, bodyHighlightedText);
 						break;
 					case 3:
 						drawNonShadedSettingsOptionOnScreen("Y", nextLineText, bodyText);
-						drawSettingsOptionValueOnScreen("Show/Hide favorites", nextLineText, bodyHighlightedText);
+						drawSettingsOptionValueOnScreen("显示/隐藏喜爱", nextLineText, bodyHighlightedText);
 						break;
 					case 4:
 						#if defined TARGET_BITTBOY
@@ -1007,23 +1007,23 @@ void drawHelpScreen(int page) {
 						#else
 						drawNonShadedSettingsOptionOnScreen("R1", nextLineText, bodyText);
 						#endif
-						drawSettingsOptionValueOnScreen("Fullscreen mode", nextLineText, bodyHighlightedText);
+						drawSettingsOptionValueOnScreen("全屏模式", nextLineText, bodyHighlightedText);
 						break;
 					case 5:
 						drawNonShadedSettingsOptionOnScreen("Select", nextLineText, bodyText);
-						drawSettingsOptionValueOnScreen("Game options", nextLineText, bodyHighlightedText);
+						drawSettingsOptionValueOnScreen("游戏选项", nextLineText, bodyHighlightedText);
 						break;
 					case 6:
 						drawNonShadedSettingsOptionOnScreen("Up/Down/Left/Right", nextLineText, bodyText);
-						drawSettingsOptionValueOnScreen("Scroll", nextLineText, bodyHighlightedText);
+						drawSettingsOptionValueOnScreen("滚动", nextLineText, bodyHighlightedText);
 						break;
 					case 7:
 						drawNonShadedSettingsOptionOnScreen("B+Left/Right", nextLineText, bodyText);
-						drawSettingsOptionValueOnScreen("Previous/Next letter", nextLineText, bodyHighlightedText);
+						drawSettingsOptionValueOnScreen("跳页", nextLineText, bodyHighlightedText);
 						break;
 					case 8:
 						drawNonShadedSettingsOptionOnScreen("B+Up/Down", nextLineText, bodyText);
-						drawSettingsOptionValueOnScreen("Quick switch", nextLineText, bodyHighlightedText);
+						drawSettingsOptionValueOnScreen("快速切换", nextLineText, bodyHighlightedText);
 						break;
 				}
 				int lineColor[] = { 229,229,229};
@@ -1039,11 +1039,11 @@ void drawHelpScreen(int page) {
 				switch (i) {
 					case 0:
 						drawNonShadedSettingsOptionOnScreen("B+Select", nextLineText, bodyText);
-						drawSettingsOptionValueOnScreen("Random select", nextLineText, bodyHighlightedText);
+						drawSettingsOptionValueOnScreen("随机选择", nextLineText, bodyHighlightedText);
 						break;
 					case 1:
 						drawNonShadedSettingsOptionOnScreen("B+X", nextLineText, bodyText);
-						drawSettingsOptionValueOnScreen("Delete game", nextLineText, bodyHighlightedText);
+						drawSettingsOptionValueOnScreen("删除游戏", nextLineText, bodyHighlightedText);
 						break;
 				}
 				int lineColor[] = { 229,229,229};
@@ -1118,7 +1118,7 @@ void updateScreen(struct Node *node) {
 					if(fullscreenMode) {
 						drawRectangleToScreen(SCREEN_WIDTH, SCREEN_HEIGHT, 0, 0, (int[]){0,0,0});
 					}
-					generateError("NO GAMES FOUND-FOR THIS SECTION GROUP", 0);
+					generateError("没有发现游戏！", 0);
 					showErrorMessage(errorMessage);
 				}
 				break;

@@ -1245,7 +1245,7 @@ int loadSections(char *file) {
 	if (value!=NULL && atoi(value)==1) {
 		displayGameCount=1;
 		setThemeResourceValueInSection (themeConfig, "GENERAL", "game_count_font", gameCountFont);
-		strcpy (gameCountText, "# Games Available");
+		strcpy (gameCountText, "# 个可用");
 		value = ini_get(themeConfig, "GENERAL", "game_count_text");
 		if(value!=NULL) {
 			strcpy (gameCountText, value);

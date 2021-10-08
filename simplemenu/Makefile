@@ -1,9 +1,9 @@
 # Software Name
 TARGET = simplemenu
-PLATFORM = PC
+#PLATFORM = PC
 #PLATFORM = RFW
 #PLATFORM = OD
-#PLATFORM = OD-BETA
+PLATFORM = OD-BETA
 #PLATFORM = NPG
 #PLATFORM = RFW
 #PLATFORM = BITTBOY
@@ -25,9 +25,9 @@ else ifeq ($(PLATFORM), OD)
 	CFLAGS = -DTARGET_OD -DUSE_GZIP -Ofast -fdata-sections -ffunction-sections -fno-PIC -flto -Wall -Wextra -std=gnu99
 	LIBS += -lSDL -lSDL_sound -lSDL_image -lSDL_ttf -lshake -lpthread -lopk -lz
 else ifeq ($(PLATFORM), OD-BETA)
-	CC = /home/bittboy/Downloads/gcw0-toolchain/usr/bin/mipsel-gcw0-linux-uclibc-gcc
-	LINKER = /home/bittboy/Downloads/gcw0-toolchain/usr/bin/mipsel-gcw0-linux-uclibc-gcc
-	CFLAGS = -DTARGET_OD_BETA -DUSE_GZIP -Ofast -fdata-sections -ffunction-sections -fno-PIC -flto -Wall -Wextra 
+	CC = /home/luali/opendingux/gcw0-toolchain/usr/bin/mipsel-gcw0-linux-uclibc-gcc
+	LINKER = /home/luali/opendingux/gcw0-toolchain/usr/bin/mipsel-gcw0-linux-uclibc-gcc
+	CFLAGS = -DTARGET_OD_BETA -DUSE_GZIP -Ofast -fdata-sections -ffunction-sections -fno-PIC -flto -Wall -Wextra
 	LIBS += -lSDL -lSDL_sound -lSDL_image -lSDL_ttf -lshake -lpthread -lopk -lz	
 else ifeq ($(PLATFORM), NPG)
 	CC = /opt/gcw0-toolchain/usr/bin/mipsel-gcw0-linux-uclibc-gcc

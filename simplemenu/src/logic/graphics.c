@@ -72,7 +72,7 @@ TTF_Font *getFooterFont() {
 
 TTF_Font *getBigFont() {
 	char *akashi = "resources/akashi.ttf";
-	BIGFont = TTF_OpenFont(akashi, calculateProportionalSizeOrDistance(14+18));
+	BIGFont = TTF_OpenFont(akashi, calculateProportionalSizeOrDistance(14));
 	return BIGFont;
 }
 
@@ -121,17 +121,17 @@ int genericDrawTextOnScreen(TTF_Font *font, TTF_Font *outline, int x, int y, cha
 
 	if (shaded) {
 		if (currentState==BROWSING_GAME_LIST  && outline != NULL && fontOutline > 0) {
-			msg1 = TTF_RenderText_Shaded(outline, bufCopy, make_color(50,50,50), make_color(backgroundColor[0], backgroundColor[1], backgroundColor[2]));
-			msg = TTF_RenderText_Solid(font, bufCopy, make_color(txtColor[0], txtColor[1], txtColor[2]));
+			msg1 = TTF_RenderUTF8_Shaded(outline, bufCopy, make_color(50,50,50), make_color(backgroundColor[0], backgroundColor[1], backgroundColor[2]));
+			msg = TTF_RenderUTF8_Solid(font, bufCopy, make_color(txtColor[0], txtColor[1], txtColor[2]));
 		} else {
-			msg = TTF_RenderText_Shaded(font, bufCopy, make_color(txtColor[0], txtColor[1], txtColor[2]), make_color(backgroundColor[0], backgroundColor[1], backgroundColor[2]));
+			msg = TTF_RenderUTF8_Shaded(font, bufCopy, make_color(txtColor[0], txtColor[1], txtColor[2]), make_color(backgroundColor[0], backgroundColor[1], backgroundColor[2]));
 		}
 	} else {
 		if (currentState==BROWSING_GAME_LIST && outline != NULL && fontOutline > 0) {
-			msg1 = TTF_RenderText_Blended(outline, bufCopy, make_color(50, 50, 50));
-			msg = TTF_RenderText_Solid(font, bufCopy, make_color(txtColor[0], txtColor[1], txtColor[2]));
+			msg1 = TTF_RenderUTF8_Blended(outline, bufCopy, make_color(50, 50, 50));
+			msg = TTF_RenderUTF8_Solid(font, bufCopy, make_color(txtColor[0], txtColor[1], txtColor[2]));
 		} else {
-			msg = TTF_RenderText_Blended(font, bufCopy, make_color(txtColor[0], txtColor[1], txtColor[2]));
+			msg = TTF_RenderUTF8_Blended(font, bufCopy, make_color(txtColor[0], txtColor[1], txtColor[2]));
 		}
 	}
 
@@ -189,14 +189,14 @@ void genericDrawMultiLineTextOnScreen(TTF_Font *font, TTF_Font *outline, int x, 
 			if (printCounter>0) {
 				SDL_FreeSurface(msg);
 			}
-			msg = TTF_RenderText_Blended(font, test, make_color(txtColor[0], txtColor[1], txtColor[2]));
+			msg = TTF_RenderUTF8_Blended(font, test, make_color(txtColor[0], txtColor[1], txtColor[2]));
 			while (msg->w<=maxWidth&&printCounter<wordCounter) {
 				printCounter++;
 				if (strcmp(wordsInBuf[printCounter],"-")!=0) {
 					strcat(test," ");
 					strcat(test,wordsInBuf[printCounter]);
 					SDL_FreeSurface(msg);
-					msg = TTF_RenderText_Blended(font, test, make_color(txtColor[0], txtColor[1], txtColor[2]));
+					msg = TTF_RenderUTF8_Blended(font, test, make_color(txtColor[0], txtColor[1], txtColor[2]));
 				} else {
 					printCounter++;
 					break;
@@ -224,7 +224,7 @@ void genericDrawMultiLineTextOnScreen(TTF_Font *font, TTF_Font *outline, int x, 
 		}
 
 	} else {
-		msg = TTF_RenderText_Blended(font, buf, make_color(txtColor[0], txtColor[1], txtColor[2]));
+		msg = TTF_RenderUTF8_Blended(font, buf, make_color(txtColor[0], txtColor[1], txtColor[2]));
 		genericDrawTextOnScreen(font,outline,x,y,buf,txtColor,align,NULL,0);
 		free(wordsInBuf[0]);
 		SDL_FreeSurface(msg);
@@ -265,8 +265,8 @@ void drawCustomText1OnScreen(TTF_Font *font, TTF_Font *outline, int x, int y, co
 	strcpy(bufCopy,buf);
 	strcpy(bufCopy1,buf);
 	bufCopy1[1]='\0';
-	msg = TTF_RenderText_Blended(font, bufCopy, make_color(txtColor[0], txtColor[1], txtColor[2]));
-	msg1 = TTF_RenderText_Blended(outline, bufCopy, make_color(50,50,50));
+	msg = TTF_RenderUTF8_Blended(font, bufCopy, make_color(txtColor[0], txtColor[1], txtColor[2]));
+	msg1 = TTF_RenderUTF8_Blended(outline, bufCopy, make_color(50,50,50));
 	if (align & HAlignCenter) {
 		x -= msg->w / 2;
 	} else if (align & HAlignRight) {
@@ -562,7 +562,7 @@ void drawBigWhiteText(char *text) {
 
 void drawLoadingText() {
 	int white[3]={255, 255, 255};
-	drawTextOnScreen(settingsFooterFont, NULL, SCREEN_WIDTH-calculateProportionalSizeOrDistance(44), SCREEN_HEIGHT-calculateProportionalSizeOrDistance(8), "LOADING...", white, VAlignMiddle | HAlignCenter);
+	drawTextOnScreen(settingsFooterFont, NULL, SCREEN_WIDTH-calculateProportionalSizeOrDistance(44), SCREEN_HEIGHT-calculateProportionalSizeOrDistance(8), "载入中...", white, VAlignMiddle | HAlignCenter);
 	refreshScreen();
 }
 
